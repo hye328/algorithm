@@ -1,16 +1,12 @@
 package programmers.sort;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class maxNumber {
 	public static void main(String[] args) {
 //		int[] numbers = {6, 10, 2};
-//		int[] numbers = {3, 30, 34, 5, 9};
-		int[] numbers = {40, 403};
+		int[] numbers = {3, 30, 34, 5, 9};
+//		int[] numbers = {0, 0, 0};
 
 		System.out.println(solution(numbers));
 	}
@@ -24,8 +20,20 @@ public class maxNumber {
 		9
 		5
 		3 30 34
+	[0, 0, 0] > 0
 	 */
-	static List<String > values = new ArrayList<>();
+	public static String solution(int[] numbers) {
+		if (Arrays.stream(numbers).sum() == 0) {
+			return "0";
+		}
+
+		String[] numberStr = Arrays.stream(numbers).mapToObj(Integer::toString).toArray(String[]::new);
+		Arrays.sort(numberStr, (o1, o2) -> (o2+o1).compareTo(o1+o2));
+
+		return String.join("", numberStr);
+	}
+
+	/*static List<String > values = new ArrayList<>();
 	private static String solution(int[] numbers) {
 		int[] rtn = new int[numbers.length];
 		boolean[] visit = new boolean[numbers.length];
@@ -48,5 +56,5 @@ public class maxNumber {
 				visit[i] = false;
 			}
 		}
-	}
+	}*/
 }
